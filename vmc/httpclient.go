@@ -29,10 +29,15 @@ func HTTPClient(certFile string, certKeyFile string) (http.Client, error) {
 	return httpClient, nil
 }
 
-// HTTPClientNoServerVerificaiton returns http client configured to skip Server Verificaiton.
-func HTTPClientNoServerVerificaiton() http.Client {
+// HTTPClientNoServerVerification returns http client configured to skip server verification.
+// InsecureSkipVerify controls whether a client verifies the server's certificate chain and host name.
+// If InsecureSkipVerify is true, TLS accepts any certificate presented by the server and any host name in that certificate.
+// In this mode, TLS is susceptible to man-in-the-middle attacks.
+// This should be used only for testing.
+func HTTPClientNoServerVerification() http.Client {
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{
-		InsecureSkipVerify: true}
+		InsecureSkipVerify : true,
+	}
 	httpClient := http.Client{}
 	return httpClient
 }
