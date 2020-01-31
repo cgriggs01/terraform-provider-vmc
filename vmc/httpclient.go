@@ -36,7 +36,7 @@ func HTTPClient(certFile string, certKeyFile string) (http.Client, error) {
 // This should be used only for testing.
 func HTTPClientNoServerVerification() http.Client {
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{
-		InsecureSkipVerify : true,
+		InsecureSkipVerify: true,
 	}
 	httpClient := http.Client{}
 	return httpClient

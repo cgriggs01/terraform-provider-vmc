@@ -20,7 +20,7 @@ type ConnectorWrapper struct {
 
 func (c *ConnectorWrapper) authenticate() error {
 	var err error
-	httpClient := HTTPClientNoServerVerificaiton()
+	httpClient := http.Client{}
 	c.Connector, err = NewVmcConnectorByRefreshToken(c.RefreshToken, c.VmcURL, c.CspURL, httpClient)
 	if err != nil {
 		return err
